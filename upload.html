@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Test</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.css" />   
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.js"></script>
+        <link href="./static/styles/style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div id="crop">
+            <button onclick="$('#upload').click()" style="margin-top:20px">Choose your image</button>
+            <input type="file" name="image" id="upload" accept="image/*" style="display: none">
+            <select id="aspectSelect">
+                <option class="aspect" data-width='296' data-height='296'>Square</option>
+                <option class="aspect" data-width='146' data-height='296'>1x2 Portrait</option>
+                <option class="aspect" data-width='196' data-height='296'>2x3 Portrait</option>
+                <option class="aspect" data-width='221' data-height='296'>3x4 Portrait</option>
+                <option class="aspect" data-width='296' data-height='146'>2x1 Landscape</option>
+                <option class="aspect" data-width='296' data-height='196'>3x2 Landscape</option>
+                <option class="aspect" data-width='296' data-height='221'>4x3 Landscape</option>
+            </select><br>
+            <div id="upload-demo"></div>
+            <button id="crop-submit">Crop</button>
+        </div>
+    </body>
+    <script type="text/javascript" src="./static/scripts/upload.js"></script>
+</html>
