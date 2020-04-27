@@ -1,85 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <title>Pixpad | Tune</title>
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="sTsZg2rm_AMuba8EQH_EkFseyPLbA6wIPOPuK-zWVrs" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:20,100,500|Poppins:100,500&display=swap" rel="stylesheet">
+    <link rel="icon" href="static/assets/favicon.ico" type="image/x-icon">
+    <link href="./static/styles/style.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="./static/scripts/quantizer.js"></script>
     <link href="./static/styles/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="two-columns">
-        <div id="tune-image"> 
-            <form id="parameter-values" action="/tune-image" method="GET">
-                <div class="form-group"><br>
+    <div class="flex">
+        <div class="col-one">
+            <div id="tune-image"> 
+                <form id="parameter-values" action="/tune-image" method="GET">
+                    <div class="form-group"><br>
+            
+                        <div class="checkboxes">
+                            <label style='display:inline'>Dither</label>
+                            <input type="checkbox" name="dither" id="dither" value=1 style="margin-bottom:10px">
+                        </div>
+                        <div class="sliders" style="display:block">
+                            <label for="contrast">Contrast</label><br>
+                            <table class="slider no-border">
+                                <tr class='no-border'>
+                                    <td class='no-border' style="text-align: right"><input type="range" name="contrast" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'contrast');"></td>
+                                    <td class='no-border' style="width: 30px;"><p id="contrast" style="display:inline">0</p></td>
+                                </tr>
+                            </table>
+                        
+                        
+                            <label for="brightness">Brightness</label><br>
+                            <table class="slider no-border"> 
+                                <tr class='no-border'>
+                                    <td class='no-border' style="text-align: right"><input type="range" name="brightness" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'brightness');">
+                                    <td class='no-border' style="width: 30px;"><p id="brightness" style="display:inline">0</p></td>
+                                </tr>
+                            </table>
         
-                    <div class="checkboxes">
-                        <label style='display:inline'>Dither</label>
-                        <input type="checkbox" name="dither" id="dither" value=1 style="margin-bottom:10px">
+                            <label for="hue">Hue</label><br>
+                            <table class="slider no-border"> 
+                                <tr class='no-border'>
+                                    <td class='no-border' style="text-align: right"><input type="range" name="hue" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'hue');">
+                                    <td class='no-border' style="width: 30px;"><p id="hue" style="display:inline">0</p></td>
+                                </tr>
+                            </table>
+                        
+                            <label for="saturation">Saturation</label><br>
+                            <table class="slider no-border">
+                                <tr class='no-border'>
+                                    <td class='no-border' style="text-align: right"><input type="range" name="saturation" min=-100 max=100 oninput="updateTextInput(this.value, 'saturation');">
+                                    <td class='no-border' style="width: 30px;"><p id="saturation" style="display:inline">0</p></td>   
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="selects">
+                            <label for="biggestDimension">Biggest dimension</label><br>
+                            <select name="biggestDimension">
+                                <option value=32>32 pixels</option>
+                                <option value=50>50 pixels</option>
+                                <option value=64 selected>64 pixels</option>
+                                <option value=96>96 pixels</option>
+                                <option value=100>100 pixels</option>
+                                <option value=128>128 pixels</option>
+                                <option value=150>150 pixels</option>
+                                <option value=200>200 pixels</option>
+                                <option value=250>250 pixels</option>
+                                <option value=300>300 pixels</option>
+                            </select><br>
+            
+                            <label for="palette">Color Palette</label><br>
+                            <select onchange="createPaletteButtons(this.selectedIndex); createPalette()">
+                                <option value="all">Color</option>
+                                <option value="bw">B/W</option>
+                            </select><br>
+                            <div id="colors"></div>
+                            <a href="edit.html"><button id="edit" type="button">Edit</button></a>
+                        </div>
                     </div>
-                    <div class="sliders" style="display:block">
-                        <label for="contrast">Contrast</label><br>
-                        <table class="slider no-border">
-                            <tr class='no-border'>
-                                <td class='no-border' style="text-align: right"><input type="range" name="contrast" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'contrast');"></td>
-                                <td class='no-border' style="width: 30px;"><p id="contrast" style="display:inline">0</p></td>
-                            </tr>
-                        </table>
-                    
-                    
-                        <label for="brightness">Brightness</label><br>
-                        <table class="slider no-border"> 
-                            <tr class='no-border'>
-                                <td class='no-border' style="text-align: right"><input type="range" name="brightness" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'brightness');">
-                                <td class='no-border' style="width: 30px;"><p id="brightness" style="display:inline">0</p></td>
-                            </tr>
-                        </table>
-    
-                        <label for="hue">Hue</label><br>
-                        <table class="slider no-border"> 
-                            <tr class='no-border'>
-                                <td class='no-border' style="text-align: right"><input type="range" name="hue" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'hue');">
-                                <td class='no-border' style="width: 30px;"><p id="hue" style="display:inline">0</p></td>
-                            </tr>
-                        </table>
-                    
-                        <label for="saturation">Saturation</label><br>
-                        <table class="slider no-border">
-                            <tr class='no-border'>
-                                <td class='no-border' style="text-align: right"><input type="range" name="saturation" min=-100 max=100 oninput="updateTextInput(this.value, 'saturation');">
-                                <td class='no-border' style="width: 30px;"><p id="saturation" style="display:inline">0</p></td>   
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="selects">
-                        <label for="biggestDimension">Biggest dimension</label><br>
-                        <select name="biggestDimension">
-                            <option value=32>32 pixels</option>
-                            <option value=50>50 pixels</option>
-                            <option value=64 selected>64 pixels</option>
-                            <option value=96>96 pixels</option>
-                            <option value=100>100 pixels</option>
-                            <option value=128>128 pixels</option>
-                            <option value=150>150 pixels</option>
-                            <option value=200>200 pixels</option>
-                            <option value=250>250 pixels</option>
-                            <option value=300>300 pixels</option>
-                        </select><br>
-        
-                        <label for="palette">Color Palette</label><br>
-                        <select onchange="createPaletteButtons(this.selectedIndex); createPalette()">
-                            <option value="all">Color</option>
-                            <option value="bw">B/W</option>
-                        </select><br>
-                        <div id="colors"></div>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="two-columns">
-        <img src="" id="output" crossorigin="anonymous"> 
+        <div class="col-two">
+            <img src="" id="output" crossorigin="anonymous"> 
+        </div>
     </div>
 </body>
 <script type="text/javascript" src="./static/scripts/tune.js"></script>

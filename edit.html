@@ -1,12 +1,88 @@
 <html lang="en">
     <head>
-        <title>Pixpad.</title>
+        <title>Pixpad | Edit</title>
         <meta charset="utf-8">
         <meta name="google-site-verification" content="sTsZg2rm_AMuba8EQH_EkFseyPLbA6wIPOPuK-zWVrs" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:20,100,500|Poppins:100,500&display=swap" rel="stylesheet">
-        <link rel="icon" href="static/assets/favicon.ico" type="image/x-icon">
-        <link href="style.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" href="./static/assets/favicon.ico" type="image/x-icon">
+        <link href="./static/styles/style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <div class="overlay">
+            <h3 class="light">Oops, it appears you are visiting this website on a mobile device!</h3>
+            <h5 class="light">For an optimal experience we suggest you to switch to a bigger screen 
+              as touch devices are not fully supported in this version</h5> 
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="inputs">
+                    <h4 class="tight">color</h4>
+                    <input type="button" class="color-picker" style="background: rgb(255, 229, 69);">
+                    <div class="colors"></div>
+                    <h4 class="tight">size</h4>
+                    <select name="size" class="size">
+                    <option value="0">S</option>
+                    <option value="1">M</option>
+                    <option value="2">L</option>
+                    </select>
+                    <h4 class="tight">mode</h4>
+                    <input type="button" class="draw-mode pressed" value="draw">
+                    <input type="button" class="erase-mode" value="erase">
+                    <input type="button" class="fill-mode" value="fill">
+                    <h4 class="tight">zoom</h4>
+                    <input type="button" class="zoom-out" value="-">
+                    <input type="button" class="zoom-in" value="+">
+                    <input type="button" class="save" value="done!">
+                </div>
+            </div>
+            <div class="column">
+              <table class="pixel-canvas"></table>
+              <br>
+            </div>
+        </div>
+        <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h4>Here are some useful tips to get you started:</h4>
+            <ul>
+                <li>Select the size of your canvas by changing the height and width parameters and then click on <b>create</b></li><b></b>
+                <li>Choose a color clicking on the <b>color</b> button</li>
+                <li>Change the size of the brush selecting between <b>S, M</b> and <b>L</b></li>
+                <li>Adjust the size of the grid using the <b>"-"</b> and <b>"+"</b> buttons to zoom in and out</li>
+                <li>Once you are ready, press <b>done</b> and you will see the preview and instructions for your masterpiece</li>
+            </ul>
+            <h4>Keyboard Shortcuts:</h4>
+            <div class="modal-row">
+                <div class="two-columns">
+                  <ul>
+                  <li>Small Brush  &nbsp;>&nbsp; <button>S</button></li>
+                  <li>Medium Brush  &nbsp;>&nbsp; <button>M</button></li>
+                  <li>Large Brush  &nbsp;>&nbsp; <button>L</button></li>
+                  <br>
+                  <li>Zoom In  &nbsp;>&nbsp; <button>+</button></li>
+                  <li>Zoom Out  &nbsp;>&nbsp; <button>-</button></li>
+                  </ul>
+                </div>
+                <div class="two-columns"></div>
+                  <ul>
+                    <li>Draw Mode  &nbsp;>&nbsp; <button>D</button></li>
+                    <li>Erase Mode  &nbsp;>&nbsp; <button>E</button></li>
+                    <li>Fill Mode  &nbsp;>&nbsp; <button>F</button></li>
+                    <br>
+                    <li>Undo  &nbsp;>&nbsp; <button>Ctrl + Z</button></li>
+                    <li>Redo  &nbsp;>&nbsp; <button>Ctrl + Shift + Z</button></li>
+                  </ul>
+                </div>
+                <p><b>Don't worry!</b> You can always come back to these instructions by pressing the <button>?</button> button at the bottom left of your screen</p>
+            </div>
+        
+        </div> 
+        <div class="footer">
+            <p style="display: inline-block; margin: 0"><a href="https://github.com/Nvios"><b>Nivos</b></a> for <a href="https://pixpad.github.io/pixpad/gallery"><b>Pixpad.</b></a></p>
+            <button id="modal-button"><b>?</b></button>
+        </div>
+    </body>
+    <script type="text/javascript" src="./static/scripts/script.js"></script>
+</html>

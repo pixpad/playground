@@ -20,9 +20,8 @@ h1 img, h2 img, h3 img,
 h4 img, h5 img, h6 img {
   margin: 0;
 }
-img#output { 
+img#output {
 	height: 400px; 
-	display: block;
 	margin-left: auto; 
 	margin-right: auto; 
 	image-rendering: pixelated; 
@@ -30,7 +29,8 @@ img#output {
 	border-radius: 6px;
 	box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.200)
 }
-img#output:hover { transform: matrix(2, 0, 0, 2, 0, 150); position: relative; z-index: 1;}
+
+img#output:hover { transform: matrix(1.8, 0, 0, 1.8, 0, 0); position: relative; z-index: 1;}
 
 
 /* Text elements
@@ -91,6 +91,7 @@ dd          { margin-left: 1.5em;}
 .tight      { margin: 8px 0px; padding: 0px; }
 .center		  { display: block; margin-left: auto; margin-right: auto; width: 90%;}
 .text-center{ text-align: center; }
+.vl-center  { position: absolute; top: 50%; -ms-transform: translate(0%, -50%); transform: translate(0%, -50%);}
 .v-center	  { margin-left: auto; margin-right: auto; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
 .instr	  	{ padding: 4em 4em 0em; }
 .no-border  { border: none; }
@@ -317,10 +318,23 @@ input[type=number] {
 }
 
 .two-columns {
-  float: left;
-  width: 50%;
+	float: left;
+	width: 50%;
 }
 
+.flex {
+	display: flex;
+	align-items: center;
+	height: 100vh;
+}
+
+.col-one {
+	width: 180px;
+}
+
+.col-two {
+	margin: auto;
+}
 /*----------------------------------------------------------------
 TUNE IMAGE PROPERTIES
 ----------------------------------------------------------------*/
@@ -362,6 +376,12 @@ button {
 .tooltip:hover .tooltiptext {
 		visibility: visible;
 		transition: 0.3s; 
+}
+
+.form-group { 
+	width: 180px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /*----------------------------------------------------------------
