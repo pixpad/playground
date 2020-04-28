@@ -13,8 +13,7 @@
         <div class="brick-quantities text-center"></div>
         <button class="view">Show Instructions</button>
         <table class="instructions-canvas dots"></table>
-        <br>
-        <input type="button" class="view" value="back" onclick="window.location.href = 'edit.html'">
+        <button class="view-back">back</button>
         <br>
         <p>Find out more about this project <a href="https://github.com/nvios/pixpad"><b>here!</b></a></p>
     </div> 
@@ -23,7 +22,8 @@
     const brickQuantities = JSON.parse(`${localStorage.getItem("brickQuantities")}`);
     const image = JSON.parse(localStorage.getItem("canvas"));
     const requirementsList = document.querySelector('.brick-quantities');
-    const button = document.querySelector("button");
+    const view = document.querySelector("button.view");
+    const back = document.querySelector("button.back");
     const instructionsCanvas = document.querySelector('.instructions-canvas');
 
     function createBrickRequirements(brickQuantities) {
@@ -59,7 +59,7 @@
         loadInstructions(image);
     });
 
-    button.addEventListener("click", () => {
+    view.addEventListener("click", () => {
         if (instructionsCanvas.classList[1] == "dots") {
             instructionsCanvas.classList.remove("dots")
             instructionsCanvas.classList.add("letters")
@@ -71,4 +71,6 @@
             button.innerHTML = "Show Instructions"
         };
     });
+
+    view.addEventListener("click", () => window.location.href = 'edit.html')
 </script>
