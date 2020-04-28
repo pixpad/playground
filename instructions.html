@@ -23,7 +23,7 @@
     const image = JSON.parse(localStorage.getItem("canvas"));
     const requirementsList = document.querySelector('.brick-quantities');
     const view = document.querySelector("button.view");
-    const back = document.querySelector("button.back");
+    const back = document.querySelector("button.view-back");
     const instructionsCanvas = document.querySelector('.instructions-canvas');
 
     function createBrickRequirements(brickQuantities) {
@@ -72,5 +72,5 @@
         };
     });
 
-    view.addEventListener("click", () => window.location.href = 'edit.html')
+    back.addEventListener("click", () => window.location.href = 'https://pixpad.github.io/playground/edit.html')
 </script>
