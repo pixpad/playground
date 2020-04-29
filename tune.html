@@ -62,18 +62,7 @@
                         </div>
                         <div class="selects">
                             <label for="biggestDimension">Biggest dimension</label><br>
-                            <select name="biggestDimension">
-                                <option value=32>32 pixels</option>
-                                <option value=50>50 pixels</option>
-                                <option value=64 selected>64 pixels</option>
-                                <option value=96>96 pixels</option>
-                                <option value=100>100 pixels</option>
-                                <option value=128>128 pixels</option>
-                                <option value=150>150 pixels</option>
-                                <option value=200>200 pixels</option>
-                                <option value=250>250 pixels</option>
-                                <option value=300>300 pixels</option>
-                            </select><br>
+                            <select name="biggestDimension" id="biggestDimension"></select><br>
             
                             <label for="palette">Color Palette</label><br>
                             <select onchange="createPaletteButtons(this.selectedIndex); createPalette()">
