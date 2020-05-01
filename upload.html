@@ -18,6 +18,7 @@
     </head>
     <body>
         <div id="crop" class="v-center">
+            <button onclick="window.location.href = 'index.html'">Home</button>
             <button onclick="$('#upload').click()" style="margin-top:20px">Choose your image</button>
             <input type="file" name="image" id="upload" accept="image/*" style="display: none">
             <select id="aspectSelect">
@@ -30,7 +31,6 @@
                 <option class="aspect" data-width='296' data-height='221'>4x3 Landscape</option>
             </select><br>
             <div id="upload-demo"></div>
-            <button onclick="window.location.href = 'index.html'">Home</button>
             <button id="crop-submit">Crop</button>
         </div>
     </body>
