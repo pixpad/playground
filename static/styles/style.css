@@ -111,7 +111,6 @@ td {
 #colors button.deactivated {
 	padding: 6px;
 	margin: 7px;
-	opacity: .4;
 	border: 1px dotted rgb(85, 85, 85);
 }
 
