@@ -4,7 +4,7 @@
     <title>Pixpad | Tune</title>
     <meta charset="utf-8">
     <meta name="author" content="Luca Bontempi" />
-	<meta name="description" content="Pixpad is a Vanilla Javascript LEGO© pixel-art maker. Transform your pictures and drawings in a LEGO© masterpiece and create the instructions to build it yourself." />
+	<meta name="description" content="Pixpad is a Vanilla Javascript LEGO© pixel-art maker. Transform your picture or drawing into a LEGO© masterpiece and create the instructions to build it yourself." />
     <meta name="google-site-verification" content="sTsZg2rm_AMuba8EQH_EkFseyPLbA6wIPOPuK-zWVrs" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -30,8 +30,10 @@
                             <label for="contrast">Contrast</label><br>
                             <table class="slider no-border">
                                 <tr class='no-border'>
-                                    <td class='no-border' style="text-align: right"><input type="range" name="contrast" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'contrast');"></td>
-                                    <td class='no-border' style="width: 30px;"><p id="contrast" style="display:inline">0</p></td>
+                                    <td class='no-border' style="text-align: right">
+                                        <input class="slider-input" type="range" name="contrast" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'contrast'); updateSliderValues()">
+                                    </td>
+                                    <td class='no-border' style="width: 30px;"><p class="slider-value" id="contrast" style="display:inline">0</p></td>
                                 </tr>
                             </table>
                         
@@ -39,29 +41,35 @@
                             <label for="brightness">Brightness</label><br>
                             <table class="slider no-border"> 
                                 <tr class='no-border'>
-                                    <td class='no-border' style="text-align: right"><input type="range" name="brightness" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'brightness');">
-                                    <td class='no-border' style="width: 30px;"><p id="brightness" style="display:inline">0</p></td>
+                                    <td class='no-border' style="text-align: right">
+                                        <input class="slider-input" type="range" name="brightness" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'brightness'); updateSliderValues()">
+                                    </td>
+                                    <td class='no-border' style="width: 30px;"><p class="slider-value" id="brightness" style="display:inline">0</p></td>
                                 </tr>
                             </table>
         
                             <label for="hue">Hue</label><br>
                             <table class="slider no-border"> 
                                 <tr class='no-border'>
-                                    <td class='no-border' style="text-align: right"><input type="range" name="hue" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'hue');">
-                                    <td class='no-border' style="width: 30px;"><p id="hue" style="display:inline">0</p></td>
+                                    <td class='no-border' style="text-align: right">
+                                        <input class="slider-input" type="range" name="hue" min=-100 max=100 value="0" oninput="updateTextInput(this.value, 'hue'); updateSliderValues()">
+                                    </td>
+                                    <td class='no-border' style="width: 30px;"><p class="slider-value" id="hue" style="display:inline">0</p></td>
                                 </tr>
                             </table>
                         
                             <label for="saturation">Saturation</label><br>
                             <table class="slider no-border">
                                 <tr class='no-border'>
-                                    <td class='no-border' style="text-align: right"><input type="range" name="saturation" min=-100 max=100 oninput="updateTextInput(this.value, 'saturation');">
-                                    <td class='no-border' style="width: 30px;"><p id="saturation" style="display:inline">0</p></td>   
+                                    <td class='no-border' style="text-align: right">
+                                        <input class="slider-input" type="range" name="saturation" min=-100 max=100 oninput="updateTextInput(this.value, 'saturation'); updateSliderValues()">
+                                    </td>
+                                    <td class='no-border' style="width: 30px;"><p class="slider-value" id="saturation" style="display:inline">0</p></td>   
                                 </tr>
                             </table>
                         </div>
                         <div class="selects">
-                            <label for="biggestDimension">Biggest dimension</label><br>
+                            <label for="biggestDimension">Biggest Dimension</label><br>
                             <select name="biggestDimension" id="biggestDimension"></select><br>
             
                             <label for="palette">Color Palette</label><br>
@@ -70,7 +78,7 @@
                                 <option value="bw">B/W</option>
                             </select><br>
                             <div id="colors"></div>
-                            <a href="upload.html"><button id="edit" type="button">Back</button></a>
+                            <a href="upload.html"><button id="back" type="button" onclick="localStorage.clear()">Back</button></a>
                             <a href="edit.html"><button id="edit" type="button">Edit</button></a>
                         </div>
                     </div>

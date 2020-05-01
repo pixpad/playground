@@ -212,7 +212,10 @@ input[type=number] {
 .zoom-out:focus, 
 .zoom-in:focus, 
 .save:focus,
-.view:focus {
+.back:focus, 
+.next:focus,
+.view:focus,
+.view-back:focus {
 	outline:0 !important;
 	border: 1px solid rgb(72, 212, 201);
 }
