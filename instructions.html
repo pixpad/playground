@@ -7,9 +7,8 @@
         <meta name="google-site-verification" content="V_vxWKao7ndxHbeyuRS7PfvUqVsV6vWROhtidS78TWI" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:20,100,500|Poppins:100,500&display=swap" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="icon" href="static/assets/favicon.ico" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:20,100,500|Poppins:100,500&display=swap" rel="stylesheet">
         <link href="./static/styles/style.css" rel="stylesheet" type="text/css" />
 <body>
     <div>
@@ -23,12 +22,12 @@
         <p>Find out more about this project <a href="https://github.com/nvios/pixpad"><b>here!</b></a></p>
     </div> 
     <div class="loader-overlay">
-        <div class="lds-ripple v-center"><div></div><div></div></div>
+        <img src="./static/assets/loader.min.gif" class="v-center" alt="Pixpad, Loader">
     </div>
 </body>
 <script>
     document.addEventListener('readystatechange', () => {
-        if (document.readyState == 'complete') $(".loader-overlay").fadeOut(3000);
+        if (document.readyState == 'complete') document.querySelector(".loader-overlay").remove();
     });
     const brickQuantities = JSON.parse(`${localStorage.getItem("brickQuantities")}`);
     const image = JSON.parse(localStorage.getItem("canvas"));
