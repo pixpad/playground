@@ -28,7 +28,7 @@
 </body>
 <script>
     document.addEventListener('readystatechange', () => {
-        if (document.readyState == 'complete') $(".loader-overlay").fadeOut("slow");
+        if (document.readyState == 'complete') $(".loader-overlay").fadeOut(3000);
     });
     const brickQuantities = JSON.parse(`${localStorage.getItem("brickQuantities")}`);
     const image = JSON.parse(localStorage.getItem("canvas"));
