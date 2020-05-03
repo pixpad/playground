@@ -14,7 +14,7 @@
     <div>
         <h1>Here is what you will need:</h1>
         <div class="brick-quantities text-center"></div>
-        <!-- <button class="view">Show Instructions</button> -->
+        <button class="view">Show Preview</button>
         <table class="instructions-canvas dots"></table>
         <div class="instructions"></div>
         <button class="view-back">Back</button>
@@ -22,17 +22,17 @@
         <p>Find out more about this project <a href="https://github.com/nvios/pixpad"><b>here!</b></a></p>
     </div> 
     <div class="loader-overlay">
-        <img src="./static/assets/loader.min.gif" class="v-center" alt="Pixpad, Loader">
+        <div class="lds-ripple v-center"><div></div><div></div></div>
     </div>
 </body>
 <script>
     document.addEventListener('readystatechange', () => {
-        if (document.readyState == 'complete') document.querySelector(".loader-overlay").remove();
+        if (document.readyState == 'complete') document.querySelector(".loader-overlay").style.display = "none";
     });
     const brickQuantities = JSON.parse(`${localStorage.getItem("brickQuantities")}`);
     const image = JSON.parse(localStorage.getItem("canvas"));
     const requirementsList = document.querySelector('.brick-quantities');
-    const view = document.querySelector("button.view");
+    const preview = document.querySelector("button.view");
     const back = document.querySelector("button.view-back");
     const previewCanvas = document.querySelector('.dots');
     const instructions = document.querySelector('.instructions');
@@ -100,24 +100,14 @@
         };
     };
 
-/*     view.addEventListener("click", () => {
-        if (instructionsCanvas.classList[1] == "dots") {
-            instructionsCanvas.classList.remove("dots")
-            instructionsCanvas.classList.add("letters")
-            view.innerHTML = "Show Preview"
-        }
-        else { 
-            instructionsCanvas.classList.add("dots")
-            instructionsCanvas.classList.remove("letters")
-            view.innerHTML = "Show Instructions"
-        };
-    }); */
+    preview.addEventListener("click", () => {
+        createPreview(image);
+    });
 
     back.addEventListener("click", () => window.history.back())
 
     document.addEventListener("DOMContentLoaded", () => {
         createBrickRequirements(brickQuantities);
-        createPreview(image);
         createInstructions(image);
     });
 </script>
