@@ -8,26 +8,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:20,100,500|Poppins:100,500&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="icon" href="static/assets/favicon.ico" type="image/x-icon">
         <link href="./static/styles/style.css" rel="stylesheet" type="text/css" />
 <body>
     <div>
         <h1>Here is what you will need:</h1>
         <div class="brick-quantities text-center"></div>
-        <button class="view">Show Instructions</button>
+        <!-- <button class="view">Show Instructions</button> -->
         <table class="instructions-canvas dots"></table>
+        <div class="instructions"></div>
         <button class="view-back">Back</button>
         <br>
         <p>Find out more about this project <a href="https://github.com/nvios/pixpad"><b>here!</b></a></p>
     </div> 
+    <div class="loader">
+        <div class="lds-ripple v-center"><div></div><div></div></div>
+    </div>
 </body>
 <script>
+    document.addEventListener('readystatechange', () => {
+        if (document.readyState == 'complete') $(".loader").fadeOut("slow");
+    });
     const brickQuantities = JSON.parse(`${localStorage.getItem("brickQuantities")}`);
     const image = JSON.parse(localStorage.getItem("canvas"));
     const requirementsList = document.querySelector('.brick-quantities');
     const view = document.querySelector("button.view");
     const back = document.querySelector("button.view-back");
-    const instructionsCanvas = document.querySelector('.instructions-canvas');
+    const previewCanvas = document.querySelector('.dots');
+    const instructions = document.querySelector('.instructions');
 
     function createBrickRequirements(brickQuantities) {
         for (let [k,v] of Object.entries(brickQuantities)) {
@@ -37,15 +46,15 @@
         }
     }
 
-    function loadInstructions(image) {
-        let gridHeight = image.length;
-        let gridWidth = image[0].length;
+    function createPreview(image) {
+        const width = image[0].length;
+        const height = image.length;
 
-        for (let i = 0; i < gridHeight; i++) {
+        for (let i = 0; i < height; i++) {
             let gridRow = document.createElement("tr");
-            instructionsCanvas.appendChild(gridRow);
+            previewCanvas.appendChild(gridRow);
 
-            for (let j = 0; j < gridWidth; j++) {
+            for (let j = 0; j < width; j++) {
             let gridCell = document.createElement("td");
             let letter = document.createElement("span")
             gridRow.appendChild(gridCell);
@@ -57,10 +66,40 @@
         };
     };
 
-    window.addEventListener("DOMContentLoaded", () => {
-        createBrickRequirements(brickQuantities);
-        loadInstructions(image);
-    });
+    function createInstructions(image) {
+        const totWidth = image[0].length;
+        const totHeight = image.length;
+        const unit =  totWidth % 32 == 0 ? 32 : 50
+        const xQuadrants = totWidth / unit
+        const yQuadrants = totHeight / unit
+
+        for (let x = 0; x < xQuadrants; x ++) {
+            for (let y = 0; y < yQuadrants; y ++) {
+                const table = instructions.appendChild(document.createElement("table"))
+                table.classList.add("instructions-canvas")
+                table.classList.add("letters")
+                table.setAttribute('id', `${x},${y}`);
+                createQuadrant(unit, x, y, table)
+            };
+        };
+    };
+
+    function createQuadrant(unit, x, y, table) {
+        for (let i = unit * y; i < unit + unit * y; i++) {
+            let gridRow = document.createElement("tr");
+            table.appendChild(gridRow);
+
+            for (let j = unit * x; j < unit + unit * x; j++) {
+            let gridCell = document.createElement("td");
+            let letter = document.createElement("span")
+            gridRow.appendChild(gridCell);
+            gridCell.appendChild(letter);
+            letter.innerHTML = image[i][j][0]
+            gridCell.style.backgroundColor = image[i][j][1];
+            gridCell.setAttribute('id', `${i},${j}`);
+            };
+        };
+    };
 
     view.addEventListener("click", () => {
         if (instructionsCanvas.classList[1] == "dots") {
@@ -76,4 +115,10 @@
     });
 
     back.addEventListener("click", () => window.history.back())
+
+    document.addEventListener("DOMContentLoaded", () => {
+        createBrickRequirements(brickQuantities);
+        createPreview(image);
+        createInstructions(image);
+    });
 </script>
