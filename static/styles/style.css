@@ -169,7 +169,7 @@ td {
 }
 
 .instructions-canvas {
-	margin: 20px auto 0px;
+	margin: 0px auto 20px;
 }
 
 span { display: none; }

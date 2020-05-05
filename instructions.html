@@ -53,12 +53,8 @@
 
             for (let j = 0; j < width; j++) {
             let gridCell = document.createElement("td");
-            let letter = document.createElement("span")
             gridRow.appendChild(gridCell);
-            gridCell.appendChild(letter);
-            letter.innerHTML = image[i][j][0]
             gridCell.style.backgroundColor = image[i][j][1];
-            gridCell.setAttribute('id', `${i},${j}`);
             };
         };
     };
@@ -72,6 +68,7 @@
 
         for (let x = 0; x < xQuadrants; x ++) {
             for (let y = 0; y < yQuadrants; y ++) {
+                if (xQuadrants > 1 || yQuadrants > 1) instructions.appendChild(document.createElement("p")).innerHTML =  `Row: ${y + 1}, Column: ${x + 1}`
                 const table = instructions.appendChild(document.createElement("table"))
                 table.classList.add("instructions-canvas")
                 table.classList.add("letters")
