@@ -26,9 +26,6 @@
     </div>
 </body>
 <script>
-    document.addEventListener('readystatechange', () => {
-        if (document.readyState == 'complete') document.querySelector(".loader-overlay").style.display = "none";
-    });
     const brickQuantities = JSON.parse(`${localStorage.getItem("brickQuantities")}`);
     const image = JSON.parse(localStorage.getItem("canvas"));
     const requirementsList = document.querySelector('.brick-quantities');
@@ -36,6 +33,7 @@
     const back = document.querySelector("button.view-back");
     const previewCanvas = document.querySelector('.dots');
     const instructions = document.querySelector('.instructions');
+    const loader = document.querySelector(".loader-overlay");
 
     function createBrickRequirements(brickQuantities) {
         for (let [k,v] of Object.entries(brickQuantities)) {
@@ -100,8 +98,22 @@
         };
     };
 
-    preview.addEventListener("click", () => {
-        createPreview(image);
+    const showLoader = () => { return new Promise((resolve) => {
+            setTimeout(() => resolve(""), 10);
+            loader.style.display = "block";
+        });
+    }
+
+    preview.addEventListener("click", async () => {
+        if (preview.innerHTML === "Show Preview") {
+            await showLoader();
+            preview.innerHTML = "Hide Preview";
+            createPreview(image);
+            loader.style.display = "none";
+        } else {
+            preview.innerHTML = "Show Preview";
+            previewCanvas.innerHTML = "";
+        }
     });
 
     back.addEventListener("click", () => window.history.back())
@@ -109,5 +121,10 @@
     document.addEventListener("DOMContentLoaded", () => {
         createBrickRequirements(brickQuantities);
         createInstructions(image);
+    });
+
+    document.addEventListener('readystatechange', () => {
+        if (document.readyState == 'complete') loader.style.display = "none";
+        else loader.style.display = "block";
     });
 </script>
