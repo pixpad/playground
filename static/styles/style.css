@@ -119,11 +119,11 @@ td {
 .header div { 
 	color: rgb(255, 255, 255);
 	position: absolute;
-	top: 0;
+	top: 0px;
 	right: 0px;
 	width: 40px;
 	text-align: center;
-	padding: 10px 0;
+	padding: 20px 5px 20px 0px;
 	font-weight: bold;
 	cursor: pointer;
 }
