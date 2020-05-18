@@ -102,10 +102,6 @@ td {
   border: rgb(180, 180, 180) 1px dotted;
 }
 
-.loader {
-	left: 0;
-}
-
 .header {
 	background-color: rgb(66, 66, 66);
   position: fixed;
